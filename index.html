@@ -11,7 +11,7 @@
   <h1>Iframe post message</h1>
   <script>
     console.log('iframe inside');
-    window.parent.postMessage("payment_success", "http://localhost");
+    window.parent.postMessage("payment_success", "http://localhost:3000");
     window.parent.postMessage("payment_success", "https://development.snoonu.com/");
     window.parent.postMessage("payment_success", "https://snoonu.com/");
     console.log('iframe inside 2');

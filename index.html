@@ -10,17 +10,16 @@
 <body>
   <h1>Iframe post message</h1>
   <script>
-    console.log('iframe inside');
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const orderId = urlParams.get('Pun');
     // Message must be snoonu-payment-success_[order_id]
     const message = `snoonu-payment-success_${orderId}`;
 
-    window.parent.postMessage(message, "http://localhost:3000");
-    window.parent.postMessage(message, "https://development.snoonu.com/");
-    window.parent.postMessage(message, "https://snoonu.com/");
-    console.log('iframe inside 2');
+    window.opener.postMessage(message, "http://localhost:3000");
+    window.opener.postMessage(message, "https://development.snoonu.com/");
+    window.opener.postMessage(message, "https://snoonu.com/");
+    window.close();
   </script>
 </body>
 </html>

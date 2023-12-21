@@ -4,6 +4,17 @@
 <script>
 
     window.addEventListener('load', (event) => {
+        // for web
+        const message = `snoonu-credit-card-success`;
+
+        window.parent.postMessage(message, "http://localhost:3000");
+        window.parent.postMessage(message, "https://development.snoonu.com/");
+        window.parent.postMessage(message, "https://qa.snoonu.com/");
+        window.parent.postMessage(message, "https://snoonu.com/");
+        window.close();
+
+        console.log('sss')
+
         //for iOS
         if (
             window.webkit &&
@@ -17,22 +28,11 @@
             });
         }
 
-        console.log('before')
         // for android
         if (Android3DS)
         {
             Android3DS.on3DSResult(true, "Successfully Added Credit/Debit Card");
         }
-        console.log('after')
-
-        // for web
-        const message = `snoonu-credit-card-success`;
-
-        window.parent.postMessage(message, "http://localhost:3000");
-        window.parent.postMessage(message, "https://development.snoonu.com/");
-        window.parent.postMessage(message, "https://qa.snoonu.com/");
-        window.parent.postMessage(message, "https://snoonu.com/");
-        window.close();
     });
 </script>
 

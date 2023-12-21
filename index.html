@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Test for postmessage
+</body>
+
+<script>
+    // for web
+    const message = `snoonu-credit-card-success-opener`;
+    const message2 = `snoonu-credit-card-success-parent`;
+
+    window.opener.postMessage(message, "http://localhost:3000");
+    window.opener.postMessage(message, "https://development.snoonu.com/");
+    window.opener.postMessage(message, "https://qa.snoonu.com/");
+    window.opener.postMessage(message, "https://snoonu.com/");
+
+    window.parent.postMessage(message2, "http://localhost:3000");
+    window.parent.postMessage(message2, "https://development.snoonu.com/");
+    window.parent.postMessage(message2, "https://qa.snoonu.com/");
+    window.parent.postMessage(message2, "https://snoonu.com/");
+    window.close();
+</script>
+</html>

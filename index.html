@@ -1,30 +1,54 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    Test for postmessage
-</body>
-
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://staging.snoonu.com/api/v3/credit_card_success?success=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 <script>
-    // for web
-    const message = `snoonu-credit-card-success-opener`;
-    const message2 = `snoonu-credit-card-success-parent`;
 
-    window.opener.postMessage(message, "http://localhost:3000");
-    window.opener.postMessage(message, "https://development.snoonu.com/");
-    window.opener.postMessage(message, "https://qa.snoonu.com/");
-    window.opener.postMessage(message, "https://snoonu.com/");
+    window.addEventListener('load', (event) => {
+        //for iOS
+        if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.iOS3DS
+        ) {
+            window.webkit.messageHandlers.iOS3DS.postMessage({
+                action: "on3DSResult",
+                success: true,
+                message: "Successfully Added Credit/Debit Card "
+            });
+        }
 
-    window.parent.postMessage(message2, "http://localhost:3000");
-    window.parent.postMessage(message2, "https://development.snoonu.com/");
-    window.parent.postMessage(message2, "https://qa.snoonu.com/");
-    window.parent.postMessage(message2, "https://snoonu.com/");
-    window.close();
+        console.log('before')
+        // for android
+        if (Android3DS)
+        {
+            Android3DS.on3DSResult(true, "Successfully Added Credit/Debit Card");
+        }
+        console.log('after')
+
+        // for web
+        const message = `snoonu-credit-card-success`;
+
+        window.parent.postMessage(message, "http://localhost:3000");
+        window.parent.postMessage(message, "https://development.snoonu.com/");
+        window.parent.postMessage(message, "https://qa.snoonu.com/");
+        window.parent.postMessage(message, "https://snoonu.com/");
+        window.close();
+    });
 </script>
-</html>
+
+<div class="container">
+    <div style="text-align: center;">
+        <div>
+            <br>
+            <br>
+
+            <h2 style="color:#0fad00">Successfully Added Credit/Debit Card </h2>
+            <h2 style="color:#0fad00">Please close the window and reload the application.</h2>
+            <h2 style="color:#0fad00">يرجى إغلاق النافذة وإعادة تشغيل التطبيق</h2>
+
+        </div>
+
+    </div>
+</div>
+
+</body></html>
